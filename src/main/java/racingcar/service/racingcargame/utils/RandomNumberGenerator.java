@@ -1,5 +1,5 @@
 package racingcar.service.racingcargame.utils;
 
-public interface MovingDecisionMaker {
+public interface RandomNumberGenerator {
     public int generate();
 }

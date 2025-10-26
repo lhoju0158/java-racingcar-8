@@ -1,42 +1,45 @@
-package racingcar.service;
+package racingcar.service.racingcargame;
 
-import java.util.List;
-import racingcar.entity.RacingCarGameBoard;
-import racingcar.error.ErrorMessage;
-import racingcar.utils.Validator;
+import racingcar.dto.RacingCarGameInfo;
+import racingcar.dto.RacingCarGameResult;
+import racingcar.entity.GameCount;
+import racingcar.entity.RacingCar;
+import racingcar.entity.GameBoard;
+import racingcar.service.racingcargame.utils.FormTranslator;
+import racingcar.service.racingcargame.utils.MovingDecisionMaker;
+import racingcar.service.racingcargame.utils.RandomNumberGenerator;
 
-public class CustomRacingCarGame {
-    private RacingCarGameBoard racingCarGameBoard;
-    private final int CAR_NAME_MAX_VALUE = 5;
-    private final int CAR_NAME_LIST_MAX_SIZE = 100;
-    private final int CAR_COUNT_MAX_VALUE = 10;
 
-    public CustomRacingCarGame(List<String> carNameList, int carCount) {
-        
+public class CustomRacingCarGame implements RacingCarGame {
+    private MovingDecisionMaker movingDecisionMaker;
+    private FormTranslator formTranslator;
+
+    private CustomRacingCarGame(MovingDecisionMaker movingDecisionMaker, FormTranslator formTranslator) {
+        this.movingDecisionMaker = movingDecisionMaker;
+        this.formTranslator = formTranslator;
     }
 
-
-    public void play() {
-
+    public static CustomRacingCarGame of(MovingDecisionMaker movingDecisionMaker,
+                                         FormTranslator formTranslator) {
+        return new CustomRacingCarGame(movingDecisionMaker, formTranslator);
     }
 
-    // validate
-
-    private void validate(List<String> carNames, int carCount) {
-        if (carNames.size() > CAR_NAME_LIST_MAX_SIZE || carNames.isEmpty()) {
-            throw new IllegalArgumentException(
-                    ErrorMessage.OUTRAGE_RACING_CAR_COUNT.getMessage(CAR_NAME_LIST_MAX_SIZE));
+    @Override
+    public RacingCarGameResult play(RacingCarGameInfo racingCarGameInfo) {
+        GameCount gameCount = GameCount.of(racingCarGameInfo.getGameCount());
+        GameBoard gameBoard = formTranslator.translateInfoToBoard(racingCarGameInfo);
+        for (int i = 0; i < gameCount.get(); i++) {
+            playSingleGame(gameBoard);
         }
-        for (String carName : carNames) {
-            if (carName.length() > CAR_NAME_MAX_VALUE || carName.isEmpty()) {
-                throw new IllegalArgumentException(
-                        ErrorMessage.INVALID_RACING_CAR_NAME.getMessage(CAR_NAME_MAX_VALUE));
+        return formTranslator.translateBoardToResult(gameBoard);
+    }
+
+    private void playSingleGame(GameBoard gameBoard) {
+        for (RacingCar racingCar : gameBoard.getRacingCarList()) {
+            if (movingDecisionMaker.decideToGo()) {
+                racingCar.move();
             }
         }
-        if (carCount > CAR_COUNT_MAX_VALUE || carCount < 0) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_GAME_COUNT.getMessage(CAR_COUNT_MAX_VALUE));
-        }
+        gameBoard.recordToBoard();
     }
-
-
 }

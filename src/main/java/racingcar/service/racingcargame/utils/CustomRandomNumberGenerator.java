@@ -2,17 +2,9 @@ package racingcar.service.racingcargame.utils;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-public class CustomMovingDecisionMaker implements MovingDecisionMaker {
+public class CustomRandomNumberGenerator implements RandomNumberGenerator {
     @Override
-    public boolean isTrue() {
-        if (getRandomNumber() >= 4) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    private int getRandomNumber() {
+    public int generate() {
         return Randoms.pickNumberInRange(0, 9);
     }
 }
