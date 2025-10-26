@@ -1,19 +1,19 @@
-package racingcar.dto;
+package racingcar.entity;
 
-public class RacingCar {
-    private String carName;
+public class RacingCarEntity {
+    private final String carName;
     private int movingTime;
 
-    public RacingCar(String carName, int movingTime) {
+    private RacingCarEntity(String carName) {
         this.carName = carName;
-        this.movingTime = movingTime;
+        this.movingTime = 0;
     }
 
-    public String getCarName() {
-        return carName;
+    public static RacingCarEntity of(String carName) {
+        return new RacingCarEntity(carName);
     }
 
-    public int getMovingTime() {
-        return movingTime;
+    public void move() {
+        movingTime++;
     }
 }
