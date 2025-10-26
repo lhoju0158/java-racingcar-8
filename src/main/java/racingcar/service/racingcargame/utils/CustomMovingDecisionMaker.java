@@ -1,4 +1,4 @@
 package racingcar.service.racingcargame.utils;
 
-public class TranslateInfoToBoard {
+public class CustomMovingDecisionMaker {
 }

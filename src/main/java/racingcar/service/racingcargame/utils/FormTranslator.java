@@ -1,4 +1,4 @@
 package racingcar.service.racingcargame.utils;
 
-public class MovingDecisionMakerTest {
+public interface FormTranslator {
 }
