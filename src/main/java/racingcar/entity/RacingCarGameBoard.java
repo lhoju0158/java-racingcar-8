@@ -1,42 +1,45 @@
 package racingcar.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 import racingcar.error.ErrorMessage;
 
-public class RacingCarGameBoardEntity {
-    private final List<RacingCarEntity> racingCarEntityList;
-    private static final int CAR_NAME_MAX_VALUE = 5;
-    private static final int CAR_NAME_LIST_MAX_SIZE = 100;
+public class RacingCarGameBoard {
+    private final List<RacingCar> racingCarList;
+    private String recordBoard;
+    private static final int RACING_CAR_LIST_MAX_SIZE = 100;
 
-    public RacingCarGameBoardEntity(List<RacingCarEntity> racingCarEntityList) {
-        this.racingCarEntityList = racingCarEntityList;
+    private RacingCarGameBoard(List<RacingCar> racingCarList) {
+        this.racingCarList = racingCarList;
+        this.recordBoard = "";
     }
 
-    public static RacingCarGameBoardEntity of(List<String> carNameList) {
-        validateCarList(carNameList);
-        List<RacingCarEntity> carList = new ArrayList<>();
-        for (String carName : carNameList) {
-            carList.add(RacingCarEntity.of(carName));
-        }
-        return new RacingCarGameBoardEntity(carList);
+    public static RacingCarGameBoard of(List<RacingCar> racingCarList) {
+        validate(racingCarList);
+        return new RacingCarGameBoard(racingCarList);
     }
 
-    private static void validateCarList(List<String> carNames) {
-        if (carNames.size() > CAR_NAME_LIST_MAX_SIZE || carNames.isEmpty()) {
+    private static void validate(List<RacingCar> racingCarList) {
+        if (racingCarList.size() > RACING_CAR_LIST_MAX_SIZE || racingCarList.isEmpty()) {
             throw new IllegalArgumentException(
-                    ErrorMessage.OUTRAGE_RACING_CAR_COUNT.getMessage(CAR_NAME_LIST_MAX_SIZE));
-        }
-        for (String carName : carNames) {
-            if (carName.length() > CAR_NAME_MAX_VALUE || carName.isEmpty()) {
-                throw new IllegalArgumentException(
-                        ErrorMessage.INVALID_RACING_CAR_NAME.getMessage(CAR_NAME_MAX_VALUE));
-            }
+                    ErrorMessage.OUTRAGE_RACING_CAR_COUNT.getMessage(RACING_CAR_LIST_MAX_SIZE));
         }
     }
 
-    public List<RacingCarEntity> getRacingCarList() {
-        return racingCarEntityList;
+    public List<RacingCar> getRacingCarList() {
+        return racingCarList;
+    }
+
+    public String getRecordBoard() {
+        return recordBoard;
+    }
+
+    public void recordToBoard() {
+        StringBuilder record = new StringBuilder();
+        for (RacingCar racingCar : racingCarList) {
+            record.append(racingCar.getCarName() + " : " + "-".repeat(racingCar.getMovingTime()) + "\n");
+        }
+        record.append("\n");
+        recordBoard += record.toString();
     }
 
 }
