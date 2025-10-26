@@ -9,7 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import racingcar.error.ErrorMessage;
 
-public class RacingCarGameBoardTest {
+public class GameBoardTest {
 
     @Test
     public void 옳은_입력() {
@@ -22,7 +22,7 @@ public class RacingCarGameBoardTest {
                         RacingCar.of("만선")));
 
         // when, then
-        RacingCarGameBoard.of(carList);
+        GameBoard.of(carList);
     }
 
     @Test
@@ -34,7 +34,7 @@ public class RacingCarGameBoardTest {
             carList.add(RacingCar.of("자동차"));
         }
         // when, then
-        assertThatThrownBy(() -> RacingCarGameBoard.of(carList))
+        assertThatThrownBy(() -> GameBoard.of(carList))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.OUTRAGE_RACING_CAR_COUNT.getMessage(max));
     }
@@ -46,7 +46,7 @@ public class RacingCarGameBoardTest {
         int max = 100;
 
         // when, then
-        assertThatThrownBy(() -> RacingCarGameBoard.of(carList))
+        assertThatThrownBy(() -> GameBoard.of(carList))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.OUTRAGE_RACING_CAR_COUNT.getMessage(max));
     }
@@ -66,14 +66,14 @@ public class RacingCarGameBoardTest {
                 carList.get(i).move();
             }
         }
-        RacingCarGameBoard racingCarGameBoard = RacingCarGameBoard.of(carList);
+        GameBoard gameBoard = GameBoard.of(carList);
         String expected = "재롱 : -\n동주 : --\n우댕 : ---\n만선 : ----\n\n";
 
         // when
-        racingCarGameBoard.recordToBoard();
+        gameBoard.recordToBoard();
 
         // then
-        assertThat(racingCarGameBoard.getRecordBoard()).isEqualTo(expected);
+        assertThat(gameBoard.getRecordBoard()).isEqualTo(expected);
 
     }
 }
