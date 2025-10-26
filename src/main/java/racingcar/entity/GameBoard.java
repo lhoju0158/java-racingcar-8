@@ -3,19 +3,19 @@ package racingcar.entity;
 import java.util.List;
 import racingcar.error.ErrorMessage;
 
-public class RacingCarGameBoard {
+public class GameBoard {
     private final List<RacingCar> racingCarList;
     private String recordBoard;
     private static final int RACING_CAR_LIST_MAX_SIZE = 100;
 
-    private RacingCarGameBoard(List<RacingCar> racingCarList) {
+    private GameBoard(List<RacingCar> racingCarList) {
         this.racingCarList = racingCarList;
         this.recordBoard = "";
     }
 
-    public static RacingCarGameBoard of(List<RacingCar> racingCarList) {
+    public static GameBoard of(List<RacingCar> racingCarList) {
         validate(racingCarList);
-        return new RacingCarGameBoard(racingCarList);
+        return new GameBoard(racingCarList);
     }
 
     private static void validate(List<RacingCar> racingCarList) {
