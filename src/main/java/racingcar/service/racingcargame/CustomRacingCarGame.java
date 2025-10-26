@@ -35,7 +35,7 @@ public class CustomRacingCarGame implements RacingCarGame {
     }
 
     private void playSingleGame(GameBoard gameBoard) {
-        for (RacingCar racingCar : gameBoard.getRacingCarList()) {
+        for (RacingCar racingCar : gameBoard.getRacingCars()) {
             if (movingDecisionMaker.decideToGo()) {
                 racingCar.move();
             }

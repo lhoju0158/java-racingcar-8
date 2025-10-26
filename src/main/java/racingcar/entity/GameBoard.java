@@ -4,18 +4,18 @@ import java.util.List;
 import racingcar.error.ErrorMessage;
 
 public class GameBoard {
-    private final List<RacingCar> racingCarList;
+    private final List<RacingCar> racingCars;
     private String recordBoard;
     private static final int RACING_CAR_LIST_MAX_SIZE = 100;
 
-    private GameBoard(List<RacingCar> racingCarList) {
-        this.racingCarList = racingCarList;
+    private GameBoard(List<RacingCar> racingCars) {
+        this.racingCars = racingCars;
         this.recordBoard = "";
     }
 
-    public static GameBoard of(List<RacingCar> racingCarList) {
-        validate(racingCarList);
-        return new GameBoard(racingCarList);
+    public static GameBoard of(List<RacingCar> racingCars) {
+        validate(racingCars);
+        return new GameBoard(racingCars);
     }
 
     private static void validate(List<RacingCar> racingCarList) {
@@ -25,8 +25,8 @@ public class GameBoard {
         }
     }
 
-    public List<RacingCar> getRacingCarList() {
-        return racingCarList;
+    public List<RacingCar> getRacingCars() {
+        return racingCars;
     }
 
     public String getRecordBoard() {
@@ -35,7 +35,7 @@ public class GameBoard {
 
     public void recordToBoard() {
         StringBuilder record = new StringBuilder();
-        for (RacingCar racingCar : racingCarList) {
+        for (RacingCar racingCar : racingCars) {
             record.append(racingCar.getCarName() + " : " + "-".repeat(racingCar.getMovingTime()) + "\n");
         }
         record.append("\n");

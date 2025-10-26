@@ -14,13 +14,13 @@ public class CustomFormTranslator implements FormTranslator {
     public GameBoard translateInfoToBoard(RacingCarGameInfo gameInfo) {
         String carNames = gameInfo.getCarNames();
         List<String> carNamesList = Arrays.asList(carNames.split(","));
-        List<RacingCar> carList = carNamesList.stream().map(RacingCar::of).collect(Collectors.toList());
-        return GameBoard.of(carList);
+        List<RacingCar> racingCars = carNamesList.stream().map(RacingCar::of).collect(Collectors.toList());
+        return GameBoard.of(racingCars);
     }
 
     @Override
     public RacingCarGameResult translateBoardToResult(GameBoard gameBoard) {
-        return RacingCarGameResult.of(gameBoard.getRecordBoard(), getWinner(gameBoard.getRacingCarList()));
+        return RacingCarGameResult.of(gameBoard.getRecordBoard(), getWinner(gameBoard.getRacingCars()));
     }
 
     private String getWinner(List<RacingCar> carList) {
