@@ -1,4 +1,8 @@
 package racingcar.view;
 
-public class InputView {
+import racingcar.dto.RacingCarGameInfo;
+
+public interface InputView {
+    public RacingCarGameInfo printGameInfoForm();
+
 }
