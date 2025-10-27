@@ -1,8 +1,8 @@
 package racingcar.dto;
 
 public class RacingCarGameInfo {
-    private int gameCount;
-    private String carNames;
+    private final int gameCount;
+    private final String carNames;
 
     private RacingCarGameInfo(String carNames, int gameCount) {
         this.gameCount = gameCount;

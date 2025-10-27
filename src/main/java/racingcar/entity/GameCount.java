@@ -3,7 +3,7 @@ package racingcar.entity;
 import racingcar.error.ErrorMessage;
 
 public class GameCount {
-    private int carGameCount;
+    private final int carGameCount;
     private static final int GAME_COUNT_MAX_VALUE = 100;
 
     private GameCount(int carGameCount) {

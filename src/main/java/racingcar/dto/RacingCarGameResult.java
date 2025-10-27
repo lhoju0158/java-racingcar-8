@@ -1,8 +1,8 @@
 package racingcar.dto;
 
 public class RacingCarGameResult {
-    private String gameResult;
-    private String winners;
+    private final String gameResult;
+    private final String winners;
 
     private RacingCarGameResult(String gameResult, String winners) {
         this.gameResult = gameResult;
