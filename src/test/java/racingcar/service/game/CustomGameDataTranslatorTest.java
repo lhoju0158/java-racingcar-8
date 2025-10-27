@@ -11,10 +11,10 @@ import racingcar.dto.RacingCarGameInfo;
 import racingcar.dto.RacingCarGameResult;
 import racingcar.entity.GameBoard;
 import racingcar.entity.RacingCar;
-import racingcar.service.game.internal.CustomFormTranslator;
+import racingcar.service.game.internal.CustomGameDataTranslator;
 
-public class CustomFormTranslatorTest {
-    private CustomFormTranslator customFormTranslator = new CustomFormTranslator();
+public class CustomGameDataTranslatorTest {
+    private CustomGameDataTranslator customFormTranslator = new CustomGameDataTranslator();
 
     @Test
     public void 정보에서_보드로_변환() {

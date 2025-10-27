@@ -8,7 +8,7 @@ import racingcar.dto.RacingCarGameResult;
 import racingcar.entity.RacingCar;
 import racingcar.entity.GameBoard;
 
-public class CustomFormTranslator implements FormTranslator {
+public class CustomGameDataTranslator implements GameDataTranslator {
 
     @Override
     public GameBoard translateInfoToBoard(RacingCarGameInfo gameInfo) {

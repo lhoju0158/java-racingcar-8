@@ -2,7 +2,7 @@ package racingcar;
 
 import racingcar.controller.RacingCarGameController;
 import racingcar.service.game.CustomRacingCarGame;
-import racingcar.service.game.internal.CustomFormTranslator;
+import racingcar.service.game.internal.CustomGameDataTranslator;
 import racingcar.service.game.internal.CustomMovingDecisionMaker;
 import racingcar.service.game.internal.CustomRandomNumberGenerator;
 import racingcar.view.CustomInputView;
@@ -13,7 +13,7 @@ public class Application {
         RacingCarGameController racingCarGameController
                 = RacingCarGameController.of(
                 CustomRacingCarGame.of(new CustomMovingDecisionMaker(new CustomRandomNumberGenerator()),
-                        new CustomFormTranslator()),
+                        new CustomGameDataTranslator()),
                 CustomInputView.of(), CustomOutputView.of());
         racingCarGameController.run();
     }
