@@ -1,19 +1,19 @@
 package racingcar.dto;
 
 public class RacingCarGameInfo {
-    private final int gameCount;
+    private final String gameCount;
     private final String carNames;
 
-    private RacingCarGameInfo(String carNames, int gameCount) {
+    private RacingCarGameInfo(String carNames, String gameCount) {
         this.gameCount = gameCount;
         this.carNames = carNames;
     }
 
-    public static RacingCarGameInfo of(String carNames, int gameCount) {
+    public static RacingCarGameInfo of(String carNames, String gameCount) {
         return new RacingCarGameInfo(carNames, gameCount);
     }
 
-    public int getGameCount() {
+    public String getGameCount() {
         return gameCount;
     }
 

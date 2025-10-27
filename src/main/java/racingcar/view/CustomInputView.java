@@ -18,14 +18,7 @@ public class CustomInputView implements InputView {
         System.out.println(INPUT_CAR_NAME);
         String carNames = Console.readLine();
         System.out.println(INPUT_COUNT);
-        int gameCount;
-        try {
-            gameCount = Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_GAME_COUNT_TYPE.getMessage());
-        } finally {
-            Console.close();
-        }
+        String gameCount = Console.readLine();
         return RacingCarGameInfo.of(carNames, gameCount);
     }
 }

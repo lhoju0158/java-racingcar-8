@@ -5,10 +5,21 @@ import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.dto.RacingCarGameInfo;
 import racingcar.dto.RacingCarGameResult;
+import racingcar.entity.GameCount;
 import racingcar.entity.RacingCar;
 import racingcar.entity.GameBoard;
+import racingcar.error.ErrorMessage;
 
 public class CustomGameDataTranslator implements GameDataTranslator {
+    @Override
+    public GameCount translateInfoToGameCount(RacingCarGameInfo gameInfo) {
+        String gameCount = gameInfo.getGameCount();
+        try {
+            return GameCount.of(Integer.parseInt(gameCount));
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_GAME_COUNT_TYPE.getMessage());
+        }
+    }
 
     @Override
     public GameBoard translateInfoToBoard(RacingCarGameInfo gameInfo) {

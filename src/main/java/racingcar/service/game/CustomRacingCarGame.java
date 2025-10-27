@@ -5,6 +5,7 @@ import racingcar.dto.RacingCarGameResult;
 import racingcar.entity.GameCount;
 import racingcar.entity.RacingCar;
 import racingcar.entity.GameBoard;
+import racingcar.error.ErrorMessage;
 import racingcar.service.game.internal.GameDataTranslator;
 import racingcar.service.game.internal.MovingDecisionMaker;
 
@@ -25,7 +26,7 @@ public class CustomRacingCarGame implements RacingCarGame {
 
     @Override
     public RacingCarGameResult play(RacingCarGameInfo racingCarGameInfo) {
-        GameCount gameCount = GameCount.of(racingCarGameInfo.getGameCount());
+        GameCount gameCount = gameDataTranslator.translateInfoToGameCount(racingCarGameInfo);
         GameBoard gameBoard = gameDataTranslator.translateInfoToBoard(racingCarGameInfo);
         for (int i = 0; i < gameCount.get(); i++) {
             playSingleGame(gameBoard);
