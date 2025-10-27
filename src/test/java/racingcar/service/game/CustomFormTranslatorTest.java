@@ -1,4 +1,4 @@
-package racingcar.service.racingcargame;
+package racingcar.service.game;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -11,7 +11,7 @@ import racingcar.dto.RacingCarGameInfo;
 import racingcar.dto.RacingCarGameResult;
 import racingcar.entity.GameBoard;
 import racingcar.entity.RacingCar;
-import racingcar.service.racingcargame.utils.CustomFormTranslator;
+import racingcar.service.game.internal.CustomFormTranslator;
 
 public class CustomFormTranslatorTest {
     private CustomFormTranslator customFormTranslator = new CustomFormTranslator();
@@ -23,7 +23,7 @@ public class CustomFormTranslatorTest {
 
         // when
         GameBoard gameBoard = customFormTranslator.translateInfoToBoard(racingCarGameInfo);
-        List<String> carNameList = gameBoard.getRacingCarList().stream()
+        List<String> carNameList = gameBoard.getRacingCars().stream()
                 .map(RacingCar::getCarName).collect(Collectors.toList());
 
         // then
@@ -39,7 +39,7 @@ public class CustomFormTranslatorTest {
         GameBoard gameBoard = customFormTranslator.translateInfoToBoard(racingCarGameInfo);
 
         // then
-        assertThat(gameBoard.getRacingCarList()).hasSize(4);
+        assertThat(gameBoard.getRacingCars()).hasSize(4);
 
     }
 

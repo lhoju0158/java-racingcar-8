@@ -3,7 +3,7 @@ package racingcar.controller;
 
 import racingcar.dto.RacingCarGameInfo;
 import racingcar.dto.RacingCarGameResult;
-import racingcar.service.racingcargame.RacingCarGame;
+import racingcar.service.game.RacingCarGame;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 

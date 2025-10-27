@@ -1,4 +1,4 @@
-package racingcar.service.racingcargame;
+package racingcar.service.game;
 
 import racingcar.dto.RacingCarGameInfo;
 import racingcar.dto.RacingCarGameResult;

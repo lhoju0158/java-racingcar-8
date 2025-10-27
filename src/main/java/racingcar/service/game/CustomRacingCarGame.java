@@ -1,13 +1,12 @@
-package racingcar.service.racingcargame;
+package racingcar.service.game;
 
 import racingcar.dto.RacingCarGameInfo;
 import racingcar.dto.RacingCarGameResult;
 import racingcar.entity.GameCount;
 import racingcar.entity.RacingCar;
 import racingcar.entity.GameBoard;
-import racingcar.service.racingcargame.utils.FormTranslator;
-import racingcar.service.racingcargame.utils.MovingDecisionMaker;
-import racingcar.service.racingcargame.utils.RandomNumberGenerator;
+import racingcar.service.game.internal.FormTranslator;
+import racingcar.service.game.internal.MovingDecisionMaker;
 
 
 public class CustomRacingCarGame implements RacingCarGame {

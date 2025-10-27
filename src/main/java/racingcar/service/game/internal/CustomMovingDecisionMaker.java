@@ -1,6 +1,4 @@
-package racingcar.service.racingcargame.utils;
-
-import racingcar.dto.RacingCarGameResult;
+package racingcar.service.game.internal;
 
 public class CustomMovingDecisionMaker implements MovingDecisionMaker {
 

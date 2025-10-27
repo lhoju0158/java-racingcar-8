@@ -1,10 +1,10 @@
-package racingcar.service.racingcargame;
+package racingcar.service.game;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 import racingcar.mock.TestRandomNumberGenerator;
-import racingcar.service.racingcargame.utils.CustomMovingDecisionMaker;
+import racingcar.service.game.internal.CustomMovingDecisionMaker;
 
 public class CustomMovingDecisionMakerTest {
 

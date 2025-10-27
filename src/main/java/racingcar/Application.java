@@ -1,10 +1,10 @@
 package racingcar;
 
 import racingcar.controller.RacingCarGameController;
-import racingcar.service.racingcargame.CustomRacingCarGame;
-import racingcar.service.racingcargame.utils.CustomFormTranslator;
-import racingcar.service.racingcargame.utils.CustomMovingDecisionMaker;
-import racingcar.service.racingcargame.utils.CustomRandomNumberGenerator;
+import racingcar.service.game.CustomRacingCarGame;
+import racingcar.service.game.internal.CustomFormTranslator;
+import racingcar.service.game.internal.CustomMovingDecisionMaker;
+import racingcar.service.game.internal.CustomRandomNumberGenerator;
 import racingcar.view.CustomInputView;
 import racingcar.view.CustomOutputView;
 

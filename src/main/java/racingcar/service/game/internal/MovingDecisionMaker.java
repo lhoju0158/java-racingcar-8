@@ -1,4 +1,4 @@
-package racingcar.service.racingcargame.utils;
+package racingcar.service.game.internal;
 
 public interface MovingDecisionMaker {
     public boolean decideToGo();

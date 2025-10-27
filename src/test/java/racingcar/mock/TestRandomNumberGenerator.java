@@ -1,6 +1,6 @@
 package racingcar.mock;
 
-import racingcar.service.racingcargame.utils.RandomNumberGenerator;
+import racingcar.service.game.internal.RandomNumberGenerator;
 
 public class TestRandomNumberGenerator implements RandomNumberGenerator {
     private final int fixedValue;
