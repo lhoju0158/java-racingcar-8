@@ -1,6 +1,7 @@
 package racingcar.service.game;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,16 +11,44 @@ import org.junit.jupiter.api.Test;
 import racingcar.dto.RacingCarGameInfo;
 import racingcar.dto.RacingCarGameResult;
 import racingcar.entity.GameBoard;
+import racingcar.entity.GameCount;
 import racingcar.entity.RacingCar;
+import racingcar.error.ErrorMessage;
 import racingcar.service.game.internal.CustomGameDataTranslator;
 
 public class CustomGameDataTranslatorTest {
     private CustomGameDataTranslator customFormTranslator = new CustomGameDataTranslator();
 
     @Test
+    public void 정보에서_게임_카운트로_변환() {
+        // given
+        RacingCarGameInfo racingCarGameInfo = RacingCarGameInfo.of("재롱,동쟈,우댕,만선", "5");
+
+        // when
+        GameCount gameCount = customFormTranslator.translateInfoToGameCount(racingCarGameInfo);
+
+        // then
+        assertThat(gameCount.get()).isEqualTo(5);
+    }
+
+    @Test
+    public void 정보에서_게임_카운트로_변환_문자열_입력() {
+        // given
+        RacingCarGameInfo racingCarGameInfo = RacingCarGameInfo.of("재롱,동쟈,우댕,만선", "다섯번");
+
+        // when. then
+        assertThatThrownBy(() -> customFormTranslator.translateInfoToGameCount(racingCarGameInfo))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_GAME_COUNT_TYPE.getMessage());
+
+        // then
+
+    }
+
+    @Test
     public void 정보에서_보드로_변환() {
         // given
-        RacingCarGameInfo racingCarGameInfo = RacingCarGameInfo.of("재롱,동쟈,우댕,만선", 5);
+        RacingCarGameInfo racingCarGameInfo = RacingCarGameInfo.of("재롱,동쟈,우댕,만선", "5");
 
         // when
         GameBoard gameBoard = customFormTranslator.translateInfoToBoard(racingCarGameInfo);
@@ -33,7 +62,7 @@ public class CustomGameDataTranslatorTest {
     @Test
     public void 공백문자_입력_포함() {
         // given
-        RacingCarGameInfo racingCarGameInfo = RacingCarGameInfo.of("재롱,동쟈,우댕,만선,", 5);
+        RacingCarGameInfo racingCarGameInfo = RacingCarGameInfo.of("재롱,동쟈,우댕,만선,", "5");
 
         // when
         GameBoard gameBoard = customFormTranslator.translateInfoToBoard(racingCarGameInfo);
